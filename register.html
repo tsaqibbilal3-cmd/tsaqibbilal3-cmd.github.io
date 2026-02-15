@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>daftar sebelum masuk game</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                        rgba(0, 100, 0, 0.6),
+                        rgba(0, 128, 0, 0.6)
+                      ),
+                      url('https://www.shutterstock.com/image-vector/futuristic-light-green-gaming-banner-260nw-2078782891.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: darkgreen;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        a {
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        .message {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: gray;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            background-color: green;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Form Registrasi Game</h2>
+
+    <form id="registerForm">
+        <input type="text" id="nama" placeholder="Nama Lengkap" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Konfirmasi Password" required>
+
+            <form id="myForm">
+                <input type="text" id="nama" placeholder="ketik ok untuk lanjut" required>
+
+                <!-- Link yang ditahan -->
+                <a href="gameular.html" onclick="return checkForm()">lanjut ke dalam game</a>
+            </form>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <div class="footer">
+        © 2026 Gameular By Bilal. All rights reserved.
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("registerForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Mencegah reload
+
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password.length < 6) {
+            message.textContent = "Password minimal 6 karakter!";
+            message.className = "message error";
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            message.textContent = "Password tidak sama!";
+            message.className = "message error";
+            return;
+        }
+
+        message.textContent = "Registrasi berhasil!";
+        message.className = "message success";
+
+        form.reset();
+    });
+</script>
+
+<script>
+        function checkForm() {
+  const input = document.getElementById('nama').value;
+  if (input === "") {
+    alert("Harap isi formulir terlebih dahulu!");
+    return false; // Mengembalikan false akan membatalkan navigasi link
+  }
+  return true; // Lanjut ke gameular.html jika sudah diisi
+}
+</script>
+
+</body>
+</html>
