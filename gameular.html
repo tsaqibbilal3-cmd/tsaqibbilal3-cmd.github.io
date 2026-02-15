@@ -11,51 +11,95 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg,#141e30,#243b55);
-    font-family: Arial, sans-serif;
-    color: white;
+    background: radial-gradient(circle at center, #001a00, #000);
+    font-family: 'Courier New', monospace;
+    color: #00ff99;
     overflow: hidden;
+    position: relative;
+}
+
+/* Gaming animated background grid */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        linear-gradient(#00ff3322 1px, transparent 1px),
+        linear-gradient(90deg, #00ff3322 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: moveGrid 8s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveGrid {
+    from { transform: translate(0,0); }
+    to { transform: translate(-40px,-40px); }
 }
 
 h1 {
     margin: 10px;
-    text-shadow: 0 0 10px cyan;
+    text-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+    letter-spacing: 2px;
 }
 
 canvas {
-    background: #111;
-    border: 3px solid cyan;
-    box-shadow: 0 0 20px cyan;
-    border-radius: 10px;
+    background: #001a00;
+    border: 3px solid #00ff99;
+    box-shadow: 0 0 25px #00ff99;
+    border-radius: 12px;
+}
+
+/* Scanline effect */
+canvas::after {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
 }
 
 .score {
     margin: 8px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff99;
 }
 
 button {
     padding: 8px 15px;
     border: none;
     border-radius: 6px;
-    background: cyan;
+    background: #00ff99;
     font-weight: bold;
     cursor: pointer;
     margin: 5px;
+    color: black;
+    box-shadow: 0 0 15px #00ff99;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #00aaaa;
+    background: #00cc77;
+    box-shadow: 0 0 25px #00ff99;
+    transform: scale(1.05);
+}
+
+h4 {
+    margin: 0;
+    font-weight: normal;
+    color: #00ff99;
+    text-shadow: 0 0 10px #00ff99;
 }
 
 /* Pause Menu */
 .pause-menu {
     position: absolute;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 20, 0, 0.95);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     display: none;
     text-align: center;
-    box-shadow: 0 0 20px cyan;
+    box-shadow: 0 0 30px #00ff99;
+    border: 2px solid #00ff99;
 }
 
 .pause-menu input {
@@ -82,11 +126,13 @@ button:hover {
     justify-content: center;
 }
 </style>
+
 </head>
 
 <body>
 
 <h1>🐍 Snake Game</h1>
+<h4>by Bilal Tsaqib</h4>
 <canvas id="game" width="400" height="400"></canvas>
 <div class="score">Score: <span id="score">0</span></div>
 <button onclick="togglePause()">⏸ Pause</button>
